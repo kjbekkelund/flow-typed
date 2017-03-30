@@ -1,11 +1,11 @@
 declare module 'yargs' {
-  declare type Argv = {
+  declare export type Argv = {
     _: Array<string>,
     '$0': string,
     [key: string]: mixed
   };
 
-  declare type Options = $Shape<{
+  declare export type Options = $Shape<{
     alias: string | Array<string>,
     array: boolean,
     boolean: boolean,
@@ -32,7 +32,7 @@ declare module 'yargs' {
     type: 'array' | 'boolean' | 'count' | 'number' | 'string',
   }>;
 
-  declare type ModuleObject = {
+  declare export type ModuleObject = {
     command: string,
     describe: string,
     builder: {[key: string]: Options} | (yargsInstance: Yargs) => mixed,

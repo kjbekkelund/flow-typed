@@ -1,6 +1,6 @@
 // @flow
 
-import yargs from "yargs";
+import yargs, { type Argv, type Options } from "yargs";
 
 const argv = yargs
   .usage('Usage: $0 <cmd> [options]')
@@ -54,6 +54,14 @@ const argv2 = yargs(['-x'])
   .showHelpOnFail(false, 'whoops, something went wrong! run with --help')
   .argv;
 
+const opts: { [key: string]: Options } = {
+  'f': {
+    desc: 'test'
+  }
+}
+
+const argv3: Argv = yargs.options(opts).argv
+
 yargs(['-x'])
   // $ExpectError
   .alias(true, [])
@@ -69,3 +77,10 @@ yargs.nope;
 yargs.coerce({
   date: 'foo'
 })
+
+// $ExpectError
+const opts: { [key: string]: Options } = {
+  'f': {
+    foo: 'test'
+  }
+}
